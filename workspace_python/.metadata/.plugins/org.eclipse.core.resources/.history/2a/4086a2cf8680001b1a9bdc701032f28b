@@ -1,0 +1,7 @@
+sum = 0;
+a = 2;
+for i in range(11):
+    if i / a = 0 :
+        sum +=i
+        
+print(sum)

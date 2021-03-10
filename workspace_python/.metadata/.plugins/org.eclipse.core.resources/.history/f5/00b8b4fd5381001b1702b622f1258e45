@@ -1,0 +1,54 @@
+package day02;
+/*
+ *  숫자 2번 j라벨로 넣고 btn만들고 (lbl , btn) 버튼을 클릭하면 숫자가 1씩올라가게 만든다
+ */
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+
+public class myFrame02 extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					myFrame02 frame = new myFrame02();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public myFrame02() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 500, 500);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lbl = new JLabel("New label");
+		lbl.setBounds(55, 45, 57, 15);
+		contentPane.add(lbl);
+		
+		JButton btn = new JButton("click");
+		btn.setBounds(240, 41, 97, 23);
+		contentPane.add(btn);
+	}
+
+}

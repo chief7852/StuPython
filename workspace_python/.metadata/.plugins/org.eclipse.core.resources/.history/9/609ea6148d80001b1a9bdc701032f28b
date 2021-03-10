@@ -1,0 +1,8 @@
+# input("단수를 넣으세요") 2
+# 2단을 출력
+num = substring(input("단수를 넣으세요"))
+
+for i in range(1,10):
+    
+    
+    

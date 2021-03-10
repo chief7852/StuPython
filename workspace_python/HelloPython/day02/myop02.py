@@ -1,0 +1,33 @@
+class Dog :
+    def __init__(self):
+        self.flag_bark = True
+        
+    def cutSungdae(self):
+        self.flag_bark = False
+    
+class Bird:
+    def __init__(self):
+        self.idx_fly = 0
+    def training(self):
+        self.idx_fly += 1
+    def training_hard(self,power):
+        self.idx_fly += power
+        
+class GaeSae(Dog,Bird):
+    def __init__(self):
+        Dog.__init__(self)
+        Bird.__init__(self)
+        self.flag_skill =True
+        
+    def useKill(self):
+        self.flag_skill = False
+    
+if __name__ == '__main__':
+    gs = GaeSae()
+    
+    print(gs.flag_bark,gs.idx_fly, gs.flag_skill)
+    
+    gs.cutSungdae(), gs.training(), gs.useKill()
+    
+    print(gs.flag_bark,gs.idx_fly, gs.flag_skill)
+    

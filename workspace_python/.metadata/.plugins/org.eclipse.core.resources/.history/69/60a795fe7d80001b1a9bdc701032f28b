@@ -1,0 +1,5 @@
+from asyncio.__main__ import loop
+a = input("홀/짝을 입력하시오");
+print(a);
+
+loop 10;

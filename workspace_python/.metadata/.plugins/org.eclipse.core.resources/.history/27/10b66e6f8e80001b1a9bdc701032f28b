@@ -1,0 +1,11 @@
+# input("단수를 넣으세요") 2
+# 2단을 출력
+num = input("단수를 넣으세요\n")
+print(num.find("단"))
+print(num[num.find("단")-1])
+
+num = num[num.find("단")-1]
+
+
+for i in range(1,10):
+    print(num+" x "+i+" = "+ num*i)

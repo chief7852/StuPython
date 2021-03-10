@@ -1,0 +1,8 @@
+
+public class Human {
+	
+	boolean flag_coding = true;
+	
+	
+	public void cutHanding
+}

@@ -1,0 +1,14 @@
+import random
+com = random.randrange(1, 4);
+
+mine = input("가위/바위/보 선택해주세요 \n>")
+
+print("com = 가위" if com ==1 else("com = 바위" if com ==2 else "com = 보"))
+if mine == "가위":
+    print("비겼습니다" if com==1 else ("패배" if com==2 else "이겼습니다"))
+elif mine == "바위":
+    print("이겼습니다" if com==1 else ("비겼습니다" if com==2 else "패배"))
+elif mine == "보":
+    print("패배" if com==1 else ("이겼습니다" if com==2 else "비겼습니다"))
+else :
+    print("선택한 문자를 입력하지 않아 종료됩니다.")

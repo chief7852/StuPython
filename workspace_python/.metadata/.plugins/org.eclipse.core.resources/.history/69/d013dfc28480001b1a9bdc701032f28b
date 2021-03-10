@@ -1,0 +1,6 @@
+a = []
+a.append("1")
+a.append("2")
+a.insert(2, "3")
+
+print(a)

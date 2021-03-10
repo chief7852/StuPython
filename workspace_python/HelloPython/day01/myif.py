@@ -1,0 +1,6 @@
+a = 1
+
+if a >= 0:
+    print("ok")
+elif a <0:
+    print("no")

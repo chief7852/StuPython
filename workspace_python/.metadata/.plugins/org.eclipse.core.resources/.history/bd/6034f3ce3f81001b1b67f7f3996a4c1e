@@ -1,0 +1,6 @@
+class Animal :
+    def __init__(self):
+        print("생성자")
+    def __del__(self):
+if __name__ == '__main__':
+    ani = Animal();
