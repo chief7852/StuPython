@@ -5,3 +5,13 @@ a.insert(len(a), "3")
 
 print(len(a))
 print(a)
+
+multiline ="""
+우리는 시간이
+ 없기때문에
+ 파이썬을
+ 배워야
+ 한다
+""";
+print(multiline)
+print(multiline[0:3])

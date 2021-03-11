@@ -12,3 +12,5 @@ def mymode(a,b):
 
 sum = add(1,5),minus(1,5),mul(1,5),div(1,5),mymode(1,5)
 print(sum)
+
+print()

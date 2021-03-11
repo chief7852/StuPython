@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class myFrame01 extends JFrame {
+public class MyFrame01 extends JFrame {
 
 	private JPanel contentPane;
 
@@ -22,7 +22,7 @@ public class myFrame01 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					myFrame01 frame = new myFrame01();
+					MyFrame01 frame = new MyFrame01();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +32,7 @@ public class myFrame01 extends JFrame {
 	}
 
 	
-	public myFrame01() {
+	public MyFrame01() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

@@ -1,0 +1,9 @@
+package day02;
+
+public class test {
+	public static void main(String[] args) {
+		String test = "우리는\n"
+				+ "자바를";
+		System.out.println(test.substring(0, 4));
+	}
+}

@@ -10,10 +10,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
-public class myFrame02 extends JFrame {
+public class MyFrame02 extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField tf;
 
 	/**
 	 * Launch the application.
@@ -22,8 +28,10 @@ public class myFrame02 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					myFrame02 frame = new myFrame02();
+					MyFrame02 frame = new MyFrame02();
 					frame.setVisible(true);
+					
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -34,7 +42,7 @@ public class myFrame02 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public myFrame02() {
+	public MyFrame02() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 500);
 		contentPane = new JPanel();
@@ -47,8 +55,23 @@ public class myFrame02 extends JFrame {
 		contentPane.add(lbl);
 		
 		JButton btn = new JButton("click");
+		tf = new JTextField();
+		tf.setText("1");
+		tf.setBounds(55, 84, 68, 21);
+		contentPane.add(tf);
+		tf.setColumns(10);
+		
+		ActionListener listener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lbl.setText(String.valueOf(Integer.valueOf(lbl.getText())+1));
+				tf.setText(String.valueOf(Integer.valueOf(tf.getText())+1));
+			}
+		};
+		btn.addActionListener(listener);
 		btn.setBounds(240, 41, 97, 23);
 		contentPane.add(btn);
+		
+		
 	}
-
 }

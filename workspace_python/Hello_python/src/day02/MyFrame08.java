@@ -1,0 +1,109 @@
+package day02;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class MyFrame08 {
+
+	private JFrame frame;
+	private JTextField tfCom;
+	private JTextField tfMine;
+	private JTextField tfResult;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MyFrame08 window = new MyFrame08();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public MyFrame08() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblCom = new JLabel("\uCEF4\uD130");
+		lblCom.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCom.setBounds(12, 31, 57, 22);
+		frame.getContentPane().add(lblCom);
+		
+		JLabel lblMine = new JLabel("\uB098");
+		lblMine.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMine.setBounds(12, 82, 57, 22);
+		frame.getContentPane().add(lblMine);
+		
+		tfCom = new JTextField();
+		tfCom.setBounds(95, 32, 89, 22);
+		frame.getContentPane().add(tfCom);
+		tfCom.setColumns(10);
+		
+		tfMine = new JTextField();
+		tfMine.setColumns(10);
+		tfMine.setBounds(95, 83, 89, 22);
+		frame.getContentPane().add(tfMine);
+		
+		JLabel lblResult = new JLabel("\uACB0\uACFC");
+		lblResult.setHorizontalAlignment(SwingConstants.CENTER);
+		lblResult.setBounds(12, 129, 57, 22);
+		frame.getContentPane().add(lblResult);
+		
+		tfResult = new JTextField();
+		tfResult.setColumns(10);
+		tfResult.setBounds(95, 130, 89, 22);
+		frame.getContentPane().add(tfResult);
+		
+		JButton btn = new JButton("\uC2E4\uD589\uD558\uAE30");
+		btn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int rand =Integer.valueOf((int) (Math.random()*10)-1);
+				String result = "";
+				if(0<=rand&&rand<=2)
+				{
+					tfCom.setText("가위");
+					result = tfMine.getText().equals("가위")? "비겼습니다" : tfMine.getText().equals("바위")? "승리": "패배";
+				}else if(3<=rand&&rand<=5) {
+					tfCom.setText("바위");
+					result = tfMine.getText().equals("가위")? "패배" : tfMine.getText().equals("바위")? "비겼습니다": "승리";
+				}else {
+					tfCom.setText("보");
+					result = tfMine.getText().equals("가위")? "승리" : tfMine.getText().equals("바위")? "패배": "비겼습니다";
+				}
+				
+				
+				
+				tfResult.setText(result);
+			}
+		});
+		btn.setBounds(38, 161, 97, 23);
+		frame.getContentPane().add(btn);
+	}
+
+}
