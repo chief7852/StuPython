@@ -8,10 +8,13 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class MyFrame09 {
 
 	private JFrame frame;
+	private JTextField tfcall;
 
 	/**
 	 * Launch the application.
@@ -150,16 +153,25 @@ public class MyFrame09 {
 		btn0.setBounds(12, 151, 44, 23);
 		frame.getContentPane().add(btn0);
 		
+		JLabel lblsub = new JLabel("");
+		lblsub.setBounds(212, 91, 181, 92);
+		frame.getContentPane().add(lblsub);
 		JButton btnCall = new JButton("call");
 		btnCall.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null,ta.getText() +"로 전화걸겠습니다");
+				lblsub.setText(ta.getText()+"로 전화거는중~");
 			}
 		});
 		btnCall.setBounds(68, 151, 97, 23);
 		frame.getContentPane().add(btnCall);
 		
 		
+		
+		
+		
+		
+		
 	}
-
 }
