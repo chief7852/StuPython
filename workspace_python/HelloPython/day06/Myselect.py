@@ -1,0 +1,15 @@
+import pymysql
+from day06 import MysqlConfig
+
+conn = MysqlConfig.conn
+
+
+
+try:
+    sql = 'select * from sample';
+    cur = conn.cursor()
+    cur.execute(sql)
+    print(cur.fetchall())
+finally:
+    cur.close()
+    conn.close()

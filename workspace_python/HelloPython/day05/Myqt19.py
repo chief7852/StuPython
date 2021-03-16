@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from win32gui import GetUpdateRgn
 
 
-form_class = uic.loadUiType("myqt01.ui")[0] #ui 경로 불러오기
+form_class = uic.loadUiType("myqt19.ui")[0] #ui 경로 불러오기
 class Myqt01(QMainWindow, form_class):
     def __init__(self):
         super().__init__()
@@ -15,17 +15,26 @@ class Myqt01(QMainWindow, form_class):
         
         #자주쓰면 전역변수로! 전역변수에 들어가게 하는것은 ? init 함수에 넣어주주거나 self. 에 들어가게 한다
         self.arr2D=[
-                [0,0,0,0,0, 0,0,0,0,0],
-                [0,0,0,0,0, 0,0,0,0,0],
-                [0,0,0,0,0, 0,0,0,0,0],
-                [0,0,0,0,0, 0,0,0,0,0],
-                [0,0,0,0,0, 0,0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0]
                 
-                [0,0,0,0,0, 0,0,0,0,0],
-                [0,0,0,0,0, 0,0,0,0,0],
-                [0,0,0,0,0, 0,0,0,0,0],
-                [0,0,0,0,0, 0,0,0,0,0],
-                [0,0,0,0,0, 0,0,0,0,0]
             ]
         
        
@@ -34,9 +43,9 @@ class Myqt01(QMainWindow, form_class):
         self.flag_wb = True
         self.flag_ing = True
     
-        for i in range(10): 
+        for i in range(19): 
             line = []
-            for j in range(10):
+            for j in range(19):
                 pb = QPushButton(self)
                 pb.setIcon(QtGui.QIcon('0.png'))
                 pb.setIconSize(QtCore.QSize(40,40))
@@ -49,8 +58,8 @@ class Myqt01(QMainWindow, form_class):
         #self.arr2pb[0][0].setIcon(QtGui.QIcon('1.png'))
         self.myrender()
     def reset(self):
-        for i in range(10):
-            for j in range(10):
+        for i in range(19):
+            for j in range(19):
                 self.arr2D[i][j] = 0
 
         self.flag_wb = True
@@ -107,9 +116,9 @@ class Myqt01(QMainWindow, form_class):
         
         if d1 == 5 or d2 == 5 or d3 == 5 or d4 == 5  :
             if self.flag_wb : 
-                QtWidgets.QMessageBox.about(self,"오목","백돌이 이겼음다")
+                QtWidgets.QMessageBox.about(self,"오목","백돌이 이겼th니다")
             else : 
-                QtWidgets.QMessageBox.about(self,"오목","흑돌이 이겼음다")
+                QtWidgets.QMessageBox.about(self,"오목","흑돌이 이겼th니다")
             self.flag_ing = False
         
         
@@ -245,8 +254,8 @@ class Myqt01(QMainWindow, form_class):
             return cnt
                  
     def myrender(self): #랜더링의 목적은 바로 눈으로 볼 수 있게 만들어주는것
-        for i in range(10):
-            for j in range(10):
+        for i in range(19):
+            for j in range(19):
                 if self.arr2D[i][j] == 0:
                     self.arr2pb[i][j].setIcon(QtGui.QIcon('0.png'))
                 if self.arr2D[i][j] == 1:

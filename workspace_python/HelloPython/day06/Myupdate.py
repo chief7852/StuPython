@@ -1,0 +1,18 @@
+import pymysql
+from day06 import MysqlConfig
+
+conn = MysqlConfig.conn
+
+col03 = input("col03값을 입력해주십시오( 아이디같은)")
+
+val = input("무엇으로 바꾸고싶습니까")
+
+try:
+    sql = f"update sample set col01 = '{val}' where col03 ='{col03}'";
+    cur = conn.cursor()
+    cur.execute(sql)
+    conn.commit()
+    print(cur.fetchall())
+finally:
+    cur.close()
+    conn.close()
