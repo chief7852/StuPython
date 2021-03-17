@@ -1,0 +1,159 @@
+package day02;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JTextArea;
+
+public class MyFrame09 {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MyFrame09 window = new MyFrame09();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public MyFrame09() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		@SuppressWarnings("unused")
+		String callNum = "";
+		JButton btn1 = new JButton("1");
+		btn1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tf.setText("1");
+				callNum+=1;
+			}
+		});
+		btn1.setBounds(12, 52, 44, 23);
+		frame.getContentPane().add(btn1);
+		
+		JButton btn2 = new JButton("2");
+		btn2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tf.setText("2");
+			}
+		});
+		btn2.setBounds(66, 52, 44, 23);
+		frame.getContentPane().add(btn2);
+		
+		JButton btn3 = new JButton("3");
+		btn3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tf.setText("3");
+			}
+		});
+		btn3.setBounds(122, 52, 44, 23);
+		frame.getContentPane().add(btn3);
+		
+		JButton btn4 = new JButton("4");
+		btn4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tf.setText("4");
+			}
+		});
+		btn4.setBounds(12, 85, 44, 23);
+		frame.getContentPane().add(btn4);
+		
+		JButton btn5 = new JButton("5");
+		btn5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tf.setText("5");
+			}
+		});
+		btn5.setBounds(66, 85, 44, 23);
+		frame.getContentPane().add(btn5);
+		
+		JButton btn6 = new JButton("6");
+		btn6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tf.setText("6");
+			}
+		});
+		btn6.setBounds(121, 85, 44, 23);
+		frame.getContentPane().add(btn6);
+		
+		JButton btn7 = new JButton("7");
+		btn7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tf.setText("7");
+			}
+		});
+		btn7.setBounds(12, 118, 44, 23);
+		frame.getContentPane().add(btn7);
+		
+		JButton btn8 = new JButton("8");
+		btn8.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tf.setText("8");
+			}
+		});
+		btn8.setBounds(66, 118, 44, 23);
+		frame.getContentPane().add(btn8);
+		
+		JButton btn9 = new JButton("9");
+		btn9.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ta.setText("9");
+			}
+		});
+		btn9.setBounds(121, 118, 44, 23);
+		frame.getContentPane().add(btn9);
+		
+		JButton btn0 = new JButton("0");
+		btn0.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ta.setText("0");
+			}
+		});
+		btn0.setBounds(12, 151, 44, 23);
+		frame.getContentPane().add(btn0);
+		
+		JButton btnCall = new JButton("call");
+		btnCall.setBounds(68, 151, 97, 23);
+		frame.getContentPane().add(btnCall);
+		
+		JTextArea ta = new JTextArea();
+		ta.setBounds(12, 10, 155, 32);
+		frame.getContentPane().add(ta);
+	}
+
+}

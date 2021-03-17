@@ -1,0 +1,61 @@
+package day02;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class MyFrame05 {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MyFrame05 window = new MyFrame05();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public MyFrame05() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JTextArea ta = new JTextArea();
+		ta.setBounds(24, 39, 136, 171);
+		frame.getContentPane().add(ta);
+		
+		JButton btn = new JButton("hello");
+		btn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ta.setText(btn.getText());
+			}
+		});
+		btn.setBounds(192, 40, 97, 23);
+		frame.getContentPane().add(btn);
+	}
+}

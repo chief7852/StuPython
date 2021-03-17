@@ -1,0 +1,49 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5 import uic 
+import random
+import this
+
+
+
+
+form_class = uic.loadUiType("myqt8.ui")[0]
+class Myqt04(QMainWindow, form_class):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        for i in range(10) :
+            self.btn+''+i.cpnnect(self.onEvent,i)
+        self.pb.clicked.connect(self.onClick)
+        
+
+    def onClick(self):
+        rand = random.randrange(1,4)
+        if  rand == 1 :
+            self.le1.setText("가위")
+            if self.le1.text()==self.le2.text():
+                self.le3.setText("비겼습니다")
+            else :
+                self.le3.setText("승리" if self.le2.text()=="바위" else "패배")
+        elif rand == 2 :
+            self.le1.setText("바위")
+            if self.le1.text()==self.le2.text():
+                self.le3.setText("비겼습니다")
+            else :
+                self.le3.setText("승리" if self.le2.text()=="보" else "패배")
+        else :
+            self.le1.setText("보")
+            if self.le1.text()==self.le2.text():
+                self.le3.setText("비겼습니다")
+            else :
+                self.le3.setText("승리" if self.le2.text()=="가위" else "패배")
+            
+    def onEvent(self,i):
+            print(self.btn+''+i.text())
+    
+    
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    demoWindow = Myqt04()
+    demoWindow.show() 
+    app.exec_()

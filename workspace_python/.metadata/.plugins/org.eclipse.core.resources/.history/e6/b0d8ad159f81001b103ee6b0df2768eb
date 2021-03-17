@@ -1,0 +1,31 @@
+package kr.or.ddit;
+
+import java.io.*;
+
+import javax.servlet.*;
+
+public class ImageHi extends HttpServlet{
+	public void doGet(HttpServletRequest req, HttpServletResponse rep) throws ServletException, 
+	IOException{
+		response.setContentType("image/jpg");
+		
+		byte[] ima =new byte[1000];
+		
+		ServletOutputSteam out = response.getOutputStream();
+		
+	try{
+		String imapath = request.getservletContext().getRealpath("/second/WEB-INF/src/peng.jpg");
+		
+		BufferedInputStream in = new BufferedInputStream(new FileInputStream(imapath));
+		
+
+		while(in.ready(ima) != 0){
+				out.write(ima);
+		}
+	}catch(Exception e){
+		
+	}
+	
+	}
+		
+}

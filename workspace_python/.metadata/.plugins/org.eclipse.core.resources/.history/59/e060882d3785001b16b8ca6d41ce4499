@@ -1,0 +1,80 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.Qt import QPushButton
+
+from PyQt5 import uic, QtGui, QtCore
+
+
+
+
+
+
+
+form_class = uic.loadUiType("teach.ui")[0]
+class Myqt8(QMainWindow, form_class):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.btnNum = 0;
+        self.arr2D=[
+                [0,0,0,0,0 ,0,0,0,0,0],
+                [0,0,0,0,0 ,0,0,0,0,0],
+                [0,0,0,0,0 ,0,0,0,0,0],
+                [0,0,0,0,0 ,0,0,0,0,0],
+                [0,0,0,0,0 ,0,0,0,0,0],
+                [0,0,0,0,0 ,0,0,0,0,0],
+                [0,0,0,0,0 ,0,0,0,0,0],
+                [0,0,0,0,0 ,0,0,0,0,0],
+                [0,0,0,0,0 ,0,0,0,0,0],
+                [0,0,0,0,0 ,0,0,0,0,0],
+                [0,0,0,0,0 ,0,0,0,0,0]
+            ]
+        self.arr2pb=[]
+        self.order = False;
+        for i in range(0,10):
+            line = []
+            for j in range(0,10):
+                but = QPushButton(self)
+                
+                but.setIconSize(QtCore.QSize(40,40))
+                but.setGeometry(QtCore.QRect(40*j,40*i,40,40))
+                but.clicked.connect(self.btnEvent)
+                but.setToolTip(f'{i},{j}')
+                line.append(but)
+            self.arr2pb.append(line)
+            
+            
+        self.myrender()
+    def myrender(self):   
+        for i in range(0,10):
+            for j in range(0,10):
+                if  self.arr2D[i][j] ==0 :
+                    self.arr2pb[i][j].setIcon(QtGui.QIcon('0.png'))
+                elif self.arr2D[i][j] ==1 :
+                    self.arr2pb[i][j].setIcon(QtGui.QIcon('1.png'))
+                elif self.arr2D[i][j] ==2 :
+                    self.arr2pb[i][j].setIcon(QtGui.QIcon('2.png'))   
+                
+    def btnEvent(self):
+        str = self.sender().toolTip()
+        array = str.split(',')
+        i = int(array[0])
+        j = int(array[1])
+        if(self.arr2D[i][j]!=0):
+            return
+        if(self.order==False):
+            self.arr2D[i][j] = 1
+            self.order = True
+        else :
+            self.arr2D[i][j] = 2
+            self.order = False
+        self.myrender()
+        
+    #def myrender(self):
+        
+    
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    demoWindow = Myqt8()
+    demoWindow.show() 
+    app.exec_()

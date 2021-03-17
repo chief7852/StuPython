@@ -1,0 +1,19 @@
+import pymysql
+from day06 import MysqlConfig
+
+
+conn = pymysql.connect(
+    host = 'localhost',
+    user = 'root',
+    password = 'python',
+    db='python',
+    charset='utf8'
+    )
+try:
+    sql = "insert into sample(col01 ,col02 ,col03) values ('3','3','3');"
+    cur = conn.cursor()
+    cur.execute(sql)
+    print(cur.fetchall())
+finally:
+    cur.close()
+    conn.close()

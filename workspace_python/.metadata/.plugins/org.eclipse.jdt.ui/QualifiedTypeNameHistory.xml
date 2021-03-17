@@ -6,4 +6,9 @@
     <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="java.awt.Rectangle"/>
     <fullyQualifiedTypeName name="javax.swing.JFrame"/>
+    <fullyQualifiedTypeName name="day02.myFrame02"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 </qualifiedTypeNameHistroy>

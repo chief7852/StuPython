@@ -1,0 +1,261 @@
+import sys
+
+from PyQt5 import uic, QtGui, QtCore, QtWidgets 
+from PyQt5.Qt import QPushButton
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from win32gui import GetUpdateRgn
+self.pbreset.clicked.connect(self.reset)
+
+form_class = uic.loadUiType("myqt01.ui")[0] #ui 경로 불러오기
+class Myqt01(QMainWindow, form_class):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        
+        #자주쓰면 전역변수로! 전역변수에 들어가게 하는것은 ? init 함수에 넣어주주거나 self. 에 들어가게 한다
+        self.arr2D=[
+                [0,0,0,0,0, 0,0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0],
+                
+                [0,0,0,0,0, 0,0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0],
+                [0,0,0,0,0, 0,0,0,0,0]
+            ]
+        
+       
+        
+        self.arr2pb = []    
+        self.flag_wb = True
+        self.flag_ing = True
+    
+        for i in range(10): 
+            line = []
+            for j in range(10):
+                pb = QPushButton(self)
+                pb.setIcon(QtGui.QIcon('0.png'))
+                pb.setIconSize(QtCore.QSize(40,40))
+                pb.setGeometry(QtCore.QRect(40*j, 40*i, 40, 40))   #x y w h
+                pb.clicked.connect(self.myclick) #클릭이벤트를 걸어줌
+                pb.setToolTip("{},{}".format(i,j))
+                line.append(pb)
+            self.arr2pb.append(line)
+            
+        #self.arr2pb[0][0].setIcon(QtGui.QIcon('1.png'))
+        self.myrender()
+    def reset(self):
+        print("reset")
+        
+    def myclick(self):
+        if self.flag_ing == False :
+            return
+        
+        
+        str = self.sender().toolTip()
+        arr = str.split(",")
+        i = int(arr[0])
+        j = int(arr[1])
+        
+        if self.arr2D[i][j] > 0 : 
+            return
+        
+        int_wb = 0
+        if self.flag_wb  :
+            self.arr2D[i][j] = 1
+            int_wb = 1
+        else :
+            self.arr2D[i][j] = 2
+            int_wb = 2
+            
+        self.myrender()
+        
+        up = self.getUP(i,j,int_wb)
+        dw = self.getDW(i,j,int_wb)
+        ri = self.getRI(i,j,int_wb)
+        le = self.getLE(i,j,int_wb)
+        
+        ul = self.getUL(i,j,int_wb)
+        ur = self.getUR(i,j,int_wb)
+        dl = self.getDL(i,j,int_wb)
+        dr = self.getDR(i,j,int_wb)
+        
+        # print(up)
+        # print(dw)
+        # print(ri)
+        # print(le)
+        #
+        # print(ul)
+        # print(ur)
+        # print(dl)
+        # print(dr)
+        
+        d1 = up + dw + 1
+        d2 = ri + le + 1
+        d3 = ul + dr + 1
+        d4 = ur + dl + 1
+        
+        if d1 == 5 or d2 == 5 or d3 == 5 or d4 == 5  :
+            if self.flag_wb : 
+                QtWidgets.QMessageBox.about(self,"오목","백돌이 이겼음다")
+            else : 
+                QtWidgets.QMessageBox.about(self,"오목","흑돌이 이겼음다")
+            self.flag_ing = False
+        
+        
+        
+        self.flag_wb = not self.flag_wb
+        
+    def getDR(self,i,j,int_wb):
+        cnt = 0 
+        try :
+            while True : 
+                j += 1
+                i -= 1
+                if i < 0 :
+                    return cnt
+                if j < 0 :
+                    return cnt
+                if self.arr2D[i][j] == int_wb:
+                    cnt += 1
+                else :
+                    return cnt
+        except :
+            return cnt   
+        
+    def getDL(self,i,j,int_wb):
+        cnt = 0 
+        try :
+            while True : 
+                j -= 1
+                i -= 1
+                if i < 0 :
+                    return cnt
+                if j < 0 :
+                    return cnt
+                if self.arr2D[i][j] == int_wb:
+                    cnt += 1
+                else :
+                    return cnt
+        except :
+            return cnt          
+        
+    def getUR(self,i,j,int_wb):
+        cnt = 0 
+        try :
+            while True : 
+                j -= 1
+                i += 1
+                if i < 0 :
+                    return cnt
+                if j < 0 :
+                    return cnt
+                if self.arr2D[i][j] == int_wb:
+                    cnt += 1
+                else :
+                    return cnt
+        except :
+            return cnt    
+        
+    def getUL(self,i,j,int_wb):
+        cnt = 0 
+        try :
+            while True : 
+                j += 1
+                i += 1
+                if i < 0 :
+                    return cnt
+                if j < 0 :
+                    return cnt
+                if self.arr2D[i][j] == int_wb:
+                    cnt += 1
+                else :
+                    return cnt
+        except :
+            return cnt    
+        
+    def getLE(self,i,j,int_wb):
+        cnt = 0 
+        try :
+            while True : 
+                j -= 1
+                if i < 0 :
+                    return cnt
+                if j < 0 :
+                    return cnt
+                if self.arr2D[i][j] == int_wb:
+                    cnt += 1
+                else :
+                    return cnt
+        except :
+            return cnt     
+        
+    def getRI(self,i,j,int_wb):
+        cnt = 0 
+        try :
+            while True : 
+                j += 1
+                if i < 0 :
+                    return cnt
+                if j < 0 :
+                    return cnt
+                if self.arr2D[i][j] == int_wb:
+                    cnt += 1
+                else :
+                    return cnt
+        except :
+            return cnt        
+        
+    def getDW(self,i,j,int_wb):
+        cnt = 0 
+        try :
+            while True : 
+                i -= 1
+                if i < 0 :
+                    return cnt
+                if self.arr2D[i][j] == int_wb:
+                    cnt += 1
+                else :
+                    return cnt
+        except :
+            return cnt
+                    
+    def getUP(self,i,j,int_wb):
+        cnt = 0 
+        try :
+            while True : 
+                i += 1
+                if i < 0 :
+                    return cnt
+                if self.arr2D[i][j] == int_wb:
+                    cnt += 1
+                else :
+                    return cnt
+        except :
+            return cnt
+                 
+    def myrender(self): #랜더링의 목적은 바로 눈으로 볼 수 있게 만들어주는것
+        for i in range(10):
+            for j in range(10):
+                if self.arr2D[i][j] == 0:
+                    self.arr2pb[i][j].setIcon(QtGui.QIcon('0.png'))
+                if self.arr2D[i][j] == 1:
+                    self.arr2pb[i][j].setIcon(QtGui.QIcon('1.png'))
+                if self.arr2D[i][j] == 2:
+                    self.arr2pb[i][j].setIcon(QtGui.QIcon('2.png'))
+                    
+        
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    demoWindow = Myqt01()
+    demoWindow.show() 
+    app.exec_()
+
+
+
+
+
+

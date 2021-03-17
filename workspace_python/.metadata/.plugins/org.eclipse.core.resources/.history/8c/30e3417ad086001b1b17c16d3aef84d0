@@ -1,0 +1,24 @@
+import requests
+from bs4 import BeautifulSoup
+from win_unicode_console.runner import get_code
+ 
+response = requests.get('https://www.sedaily.com/Stock/Quote/?mobile')
+ 
+text = response.text
+
+
+ 
+soup = BeautifulSoup(text, 'html.parser')
+ 
+for info in soup.select('.tbody'):
+    s_name = info.dt.text 
+    s_price = info.dd.span.text
+    s_code_text = info.dd['id']
+    s_code = info.dd['id'][len(s_code_text)-6:len(s_code_text)]
+    print(info.dt.text , end="\t")
+    print(info.dd.span.text)
+    print(info.dd['id'].str[0])
+    
+
+def getPrice(code):
+    antCode = get_code(code)

@@ -1,0 +1,7 @@
+from day06 import MysqlConfig
+
+
+conn = MysqlConfig.conn
+
+try:
+    sql = "insert into sample"

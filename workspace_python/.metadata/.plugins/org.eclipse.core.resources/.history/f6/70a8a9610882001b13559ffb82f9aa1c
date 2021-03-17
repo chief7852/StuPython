@@ -1,0 +1,74 @@
+package day02;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class MyFrame06 {
+
+	private JFrame frame;
+	private JTextField tf_dan;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MyFrame06 window = new MyFrame06();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public MyFrame06() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JTextArea ta = new JTextArea();
+		ta.setBounds(12, 23, 166, 205);
+		frame.getContentPane().add(ta);
+		
+		tf_dan = new JTextField();
+		tf_dan.setBounds(197, 25, 53, 21);
+		frame.getContentPane().add(tf_dan);
+		tf_dan.setColumns(10);
+		
+		JButton btn = new JButton("\uCD9C\uB825");
+		btn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int some = Integer.valueOf(tf_dan.getText());
+				String out = "";
+				for(int i = 1; i < 10; i++)
+				{
+					out += some + " x " + i + " = " + 
+				}
+			}
+		});
+		btn.setBounds(190, 66, 73, 23);
+		frame.getContentPane().add(btn);
+	}
+
+}

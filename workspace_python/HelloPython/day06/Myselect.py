@@ -1,4 +1,4 @@
-import pymysql
+
 from day06 import MysqlConfig
 
 conn = MysqlConfig.conn
@@ -6,7 +6,7 @@ conn = MysqlConfig.conn
 
 
 try:
-    sql = 'select * from sample';
+    sql = 'select col01,col02,col03 from sample';
     cur = conn.cursor()
     cur.execute(sql)
     print(cur.fetchall())

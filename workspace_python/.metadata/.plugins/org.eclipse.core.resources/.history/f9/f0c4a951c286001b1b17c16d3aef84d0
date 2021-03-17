@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+	<th>
+		<td>주요인사</td>
+		<td>연락처</td>
+	</th>
+	<tr>
+		<td>이토히로부미</td>
+		<td>010-2222-3333</td>
+	</tr>
+	<tr>
+		<td>이토히로부미</td>
+		<td>010-2222-3333</td>
+	</tr>
+</table>
+</body>
+</html>

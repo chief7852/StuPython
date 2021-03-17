@@ -1,0 +1,20 @@
+import pymysql
+from day06 import MysqlConfig
+
+MysqlConfig
+
+conn = pymysql.connect(
+    host = 'localhost',
+    user = 'root',
+    password = 'python',
+    db='python',
+    charset='utf8'
+    )
+
+try:
+    cur = conn.cursor()
+    cur.execute('select * from sample')
+    print(cur.fetchall())
+finally:
+    cur.close()
+    conn.close()
