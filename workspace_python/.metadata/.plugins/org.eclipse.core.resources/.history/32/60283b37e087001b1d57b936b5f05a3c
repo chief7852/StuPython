@@ -1,0 +1,25 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
+
+# X, Y, Z 축의 변수를 x,y,z_axis로 선언하여, 1~9 의 숫자를 각 각 Assign 함.
+x_axis = np.arange(11,20)
+y_axis = x_axis-10
+
+test_graph1 = plt.figure(1)# 그래프의 흰 도화지 하나를 Assign 하는 code
+
+test_graph2 = test_graph1.add_subplot(111,projection='3d')
+# 위에 선언한, Source Code를 test_graph2 속성값을 이용한다는 Code, 색깔은 Red로 한다라고 명시함.
+test_graph2.plot(x_axis,y_axis,z_axis,'r')
+# X, Y, Z 축 Label 이름을 Assign 함.
+test_graph2.set_xlabel('x_axis')
+test_graph2.set_ylabel('y_axis')
+test_graph2.set_zlabel('z_axis')
+
+# 흰 도화지의 Title을 "The First 3D Graph"
+plt.title('test')
+# 흰 도화지를 보여주는 code
+plt.show()

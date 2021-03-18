@@ -49,5 +49,11 @@ day06.Myupdate|D:\workspace_python\HelloPython\day06\Myupdate.py
 day06.__init__|D:\workspace_python\HelloPython\day06\__init__.py
 day07.Mycrawl01|D:\workspace_python\HelloPython\day07\Mycrawl01.py
 day07.Mycrawl02|D:\workspace_python\HelloPython\day07\Mycrawl02.py
+day07.MydateNow|D:\workspace_python\HelloPython\day07\MydateNow.py
 day07.__init__|D:\workspace_python\HelloPython\day07|^
 day07.mynaver01|D:\workspace_python\HelloPython\day07\mynaver01.py
+day08.Mycrawl04|D:\workspace_python\HelloPython\day08\Mycrawl04.py
+day08.Mygraf|D:\workspace_python\HelloPython\day08\Mygraf.py
+day08.Myselenium01|D:\workspace_python\HelloPython\day08\Myselenium01.py
+day08.Myselenium02|D:\workspace_python\HelloPython\day08\Myselenium02.py
+day08.Mysleep|D:\workspace_python\HelloPython\day08\Mysleep.py

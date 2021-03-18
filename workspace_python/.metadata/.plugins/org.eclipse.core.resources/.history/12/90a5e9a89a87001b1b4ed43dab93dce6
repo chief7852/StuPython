@@ -1,0 +1,10 @@
+from selenium import webdriver
+import time
+
+# browser = webdriver.Chrome()
+# browser = webdriver.Chrome(파일경로)
+driver = webdriver.Chrome('c:/informs/chromedriver.exe')
+url = 'http://localhost:8012/MYSERVER/login.html'
+driver.get(url)
+time.sleep(5)
+print(driver.page_source)

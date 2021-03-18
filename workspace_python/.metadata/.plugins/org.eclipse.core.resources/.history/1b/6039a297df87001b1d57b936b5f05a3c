@@ -1,0 +1,17 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
+
+
+x_axis = np.arange()
+y_axis = x_axis-10
+z_axis = 1/np.sqrt(4*x_axis**2)
+
+test_graph1 = plt.figure(1)
+
+test_graph2 = test_graph1.add_subplot(111,projection='3d')
+
+test_graph2.plot(x_axis,y_axis,z_axis,'r')

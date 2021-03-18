@@ -1,0 +1,12 @@
+import time
+from threading import Thread
+def work() :
+    for i in range(10):
+        print("안녕")
+        time.sleep(1)
+START, END = 0, 100000000
+result = list()
+th1 = Thread(target=work)
+
+th1.start()
+th1.join()

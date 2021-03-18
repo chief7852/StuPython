@@ -1,13 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 from win_unicode_console.runner import get_code
- 
-response = requests.get('https://www.sedaily.com/Stock/Quote/?mobile')
+
+response = requests.get('http://localhost:8012/MYSERVER/secret')
  
 text = response.text
 
-
- 
 soup = BeautifulSoup(text, 'html.parser')
  
 for info in soup.select('.tbody'):

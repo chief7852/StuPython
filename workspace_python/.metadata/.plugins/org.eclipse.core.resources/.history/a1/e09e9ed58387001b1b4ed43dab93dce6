@@ -1,0 +1,6 @@
+import time
+def work() :
+    for i in range(10):
+        print("안녕")
+        time.sleep(1)
+self.work()

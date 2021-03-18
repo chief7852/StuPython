@@ -1,0 +1,9 @@
+package kr.ncs.web;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet("/MyLogin")
+public class MyLogin extends HttpServlet {
+	
+}

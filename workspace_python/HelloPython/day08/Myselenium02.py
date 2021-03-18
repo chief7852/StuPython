@@ -1,0 +1,17 @@
+from selenium import webdriver
+import time
+
+# browser = webdriver.Chrome()
+# browser = webdriver.Chrome(파일경로)
+driver = webdriver.Chrome('c:/informs/chromedriver.exe')
+url = 'http://localhost:8012/MYSERVER/login.html'
+driver.get(url)
+driver.find_element_by_id("u_name").send_keys('abe')
+driver.find_element_by_id("pwd").send_keys('1')
+driver.find_element_by_id("mysub").click()
+
+driver.implicitly_wait(500)
+
+url = 'http://localhost:8012/MYSERVER/secret'
+driver.get(url)
+print(driver.page_source)

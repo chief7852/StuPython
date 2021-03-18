@@ -10,7 +10,7 @@ client_id = "hyY8lvFuMi4LdNtxcitU"
 client_secret = "LkjU2sjZUc"
 encText = urllib.parse.quote("게임스탑")
 #url = "https://openapi.naver.com/v1/search/blog?query=" + encText # json 결과
-url = "https://openapi.naver.com/v1/search/blog.xml?query=" + encText # xml 결과
+url = "https://openapi.naver.com/v1/search/blog.xml?sort=date&display=100&query=" + encText # xml 결과
 request = urllib.request.Request(url)
 request.add_header("X-Naver-Client-Id",client_id)
 request.add_header("X-Naver-Client-Secret",client_secret)
@@ -21,14 +21,12 @@ if(rescode==200):
     soup = BeautifulSoup(response_body,'xml')
     for info in soup.select('item'):
         print(f"""
-                  제목 : {info.title.text}
+                  제목 : {info.title.text.replace("<b>","").replace("</b>","")}
                   링크 : {info.link.text}
-                  내용 : {info.description.text}
+                  내용 : {info.description.text.replace("<b>","").replace("</b>","")}
                   날짜 : {info.postdate.text}
              블로그이름__: {info.bloggername.text}
              블로그링크__: {info.bloggerlink.text} """)
-
-    
 else:
     print("Error Code:" + rescode)
 
