@@ -1,9 +1,9 @@
 import pymysql
 
 conn = pymysql.connect(
-    host = 'localhost',
-    user = 'root',
-    password = 'python',
-    db='python',
-    charset='utf8'
+    user='root', 
+        passwd='python', 
+        host='127.0.0.1', 
+        db='_stock_old', 
+        charset='utf8'
     )
