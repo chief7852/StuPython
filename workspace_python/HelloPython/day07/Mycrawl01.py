@@ -34,41 +34,42 @@ import requests
 from bs4 import BeautifulSoup
 from win_unicode_console.runner import get_code
 import datetime  
-response = requests.get('https://www.sedaily.com/Stock/Quote/?mobile')
+response = requests.get('view-source:https://kr.investing.com/markets/united-states')
  
 text = response.text
 
-now = datetime.datetime.now()
-nowDatetime = now.strftime('%Y%m%d.%H%M')
- 
-
-conn = MysqlConfig.conn
-
 soup = BeautifulSoup(text, 'html.parser')
- 
-for info in soup.select('.tbody'):
-    s_name = info.dt.text 
-    price = info.dd.span.text
-    s_price = int(re.sub('[-_,]','',price))
-    s_code_text = str(info.dd['id'])
-    s_code = s_code_text[len(s_code_text)-6:len(s_code_text)]
-    print(s_name)
-    print(s_price)
-    print(s_code)    
-    sql = f"insert into stock(s_name ,s_price ,s_code,in_date) values ('{s_name}',{s_price},'{s_code}',{nowDatetime})"
-    print(sql)
-        
-    cur = conn.cursor()
-    cur.execute(sql)
-    
-    print(cur.rowcount)
-    
-    
-conn.commit()
-cur.close()
-conn.close()
-
-
-        
-def getPrice(code):
-    antCode = get_code(code)    
+print(soup)
+# now = datetime.datetime.now()
+# nowDatetime = now.strftime('%Y%m%d.%H%M')
+ #
+ #
+# conn = MysqlConfig.conn
+#
+ #
+# for info in soup.select('.tbody'):
+    # s_name = info.dt.text 
+    # price = info.dd.span.text
+    # s_price = int(re.sub('[-_,]','',price))
+    # s_code_text = str(info.dd['id'])
+    # s_code = s_code_text[len(s_code_text)-6:len(s_code_text)]
+    # print(s_name)
+    # print(s_price)
+    # print(s_code)    
+    # sql = f"insert into stock(s_name ,s_price ,s_code,in_date) values ('{s_name}',{s_price},'{s_code}',{nowDatetime})"
+    # print(sql)
+    #
+    # cur = conn.cursor()
+    # cur.execute(sql)
+    #
+    # print(cur.rowcount)
+    #
+    #
+# conn.commit()
+# cur.close()
+# conn.close()
+#
+#
+        #
+# def getPrice(code):
+    # antCode = get_code(code)    

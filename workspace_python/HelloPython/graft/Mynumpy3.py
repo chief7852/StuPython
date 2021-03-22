@@ -2,57 +2,59 @@ import matplotlib as mpl
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np               
 import matplotlib.pyplot as plt
-import numpy as np
-import pymysql
 from graft import ColNum, ColName, MysqlConfig
-import re
-
-num = ColNum.numnum()
-name =ColName.colName()
-
-print(num)
-print(name)
+from win32comext.mapi.mapiutil import GetAllProperties
 
 
-def getPrices(s_name):
-    arr = []
+
+
+def getAllPrices():
+    conn= MysqlConfig.conn
     
-    conn = MysqlConfig.conn
-    curs = conn.cursor()
+    zs = []
+    sql = """
+    select *
+    from stock_sync_0121
     
+    """
+    cur = conn.cursor()
+    cur.execute(sql)
+    rows = cur.fetchall()
     
-    sql = "SELECT s000020 FROM stock_sync_0121;"
-    curs.execute(sql, s_name)
-    rows = curs.fetchall()
+    cnt10 = len(rows)
+    cnt3 = len(rows[0])-1
     
-    for i in rows:
-        tmp =int(re.sub('[-=+,#/\?:^$.@*\"※~&%ㆍ!』\\‘|\(\)\[\]\<\>`\'…》]','',str(i)))
-        arr.append(tmp)
-    print(rows)
-    
-    
-    conn.close()
-    return arr
+    for i3 in range(cnt3):
+        line = []
+        first_price = rows[0][i3]
+        
+        for j10 in range(cnt10):
+            if first_price ==0:
+                line.append(0.8)
+            else:
+                line.append(rows[j10][i3]/first_price)
+        zs.append(line)
+
+    conn.close()    
+    return(zs)
 
 mpl.rcParams['legend.fontsize'] = 10            
 
 fig = plt.figure()
 ax = fig.gca(projection='3d')
 
-x = np.zeros(119)
+zs = getAllPrices()
+x = np.zeros(len(zs[0]))
 
-y = range(119)
-zs = []
+y = range(len(zs[0]))
 
-for i in name:
-    zs.append(getPrices(f"{i}"))
-# zs.append(getPrices("삼성전자"))
-# zs.append(getPrices("LG"))
-# zs.append(getPrices("SK"))        
 
-ax.plot(x+0, y, zs[0], label='SAMSUNG')
-ax.plot(x+1, y, zs[1], label='LG')
-ax.plot(x+2, y, zs[2], label='SK')
+
+print(len(zs))
+
+for i in range(len(zs)):
+    ax.plot(x+i , y, zs[i])
+  
 
 ax.legend()                                       
 
