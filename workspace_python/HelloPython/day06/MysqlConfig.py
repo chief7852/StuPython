@@ -4,6 +4,6 @@ conn = pymysql.connect(
     user='root', 
         passwd='python', 
         host='127.0.0.1', 
-        db='_stock_old', 
+        db='python', 
         charset='utf8'
     )

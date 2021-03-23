@@ -1,15 +1,10 @@
 
 from day06 import MysqlConfig
-
+arr = []
 conn = MysqlConfig.conn
 
-
-
-try:
-    sql = 'select col01,col02,col03 from sample';
-    cur = conn.cursor()
-    cur.execute(sql)
-    print(cur.fetchall())
-finally:
-    cur.close()
-    conn.close()
+sql = 'SELECT * FROM stock WHERE s_name = "삼성전자" ORDER BY in_date asc;'
+cur = conn.cursor()
+cur.execute(sql)
+arr = cur.fetchall()
+print(len(arr))
