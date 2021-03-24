@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script> 
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+	<th>사번</th>
+	<th>이름</th>
+	<th>부서</th>
+	<th>전화번호</th>
+{%for e in list%}
+<tr>
+	<td class="sabun">{{e.sabun}}</td> 
+	<td>{{e.e_name}}</td>
+	<td>{{e.dept}}</td>
+	<td>{{e.mobile}}</td>
+</tr>
+{% endfor %}
+</table>
+
+<script type="text/javascript">
+ $('.sabun').on('click', function(){
+	 var val = $(this).text()
+	 $.ajax({
+		 url : 'http://localhost:80/test',
+		 type : 'GET',
+		 data : {sabun:val},
+		 dataType : 'json',
+		 success : function(res){
+			 alert(res)
+		 },
+		 error: function(xtr,status,error){
+			  alert(xtr +":"+status+":"+error);
+		 }
+
+	 })
+ })
+</script>
+</body>
+
+</html>

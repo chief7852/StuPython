@@ -9,7 +9,7 @@ def stocked(temp):
     arr =[]
     conn = MysqlConfig.conn
     
-    sql = f'SELECT * FROM stock WHERE s_name = "{temp}" ORDER BY in_date asc;'
+    sql = f'SELECT s_code,s_name,s_price,in_date FROM stock WHERE s_name = "{temp}" ORDER BY in_date asc;'
     cur = conn.cursor()
     cur.execute(sql)
     arr = cur.fetchall()
@@ -18,7 +18,7 @@ def stocked(temp):
 
 @app.route("/para")
 def hello():
-    return render_template("list2.html")
+    return render_template("stock.html")
 
 @app.route("/search",methods = ['post','get'])
 def search():
@@ -26,7 +26,7 @@ def search():
     temp = request.args.get('name', "")
     brand = stocked(temp)
     print(brand)
-    return render_template("list2.html",val = brand)
+    return render_template("stock.html",val = brand)
 
 
     return temp
