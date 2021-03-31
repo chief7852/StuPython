@@ -1,69 +1,70 @@
-from day12 import MysqlConfig
+import pymysql
 
-class MyEmpDao :
+
+class MyEmpDao:
     def __init__(self):
         pass
-        
     def getEmps(self):
-        arr=[]
-        conn = MysqlConfig.conn
-
-        sql = 'SELECT sabun,e_name,dept,mobile FROM emp';
-        cur = conn.cursor()
-        cur.execute(sql)
-        rows = cur.fetchall()
+        ret = []
+        conn = pymysql.connect(host='localhost', user='root', password='python', db='python', charset='utf8')
+        curs = conn.cursor()
+        
+        sql = "select sabun,name,dept,mobile from emp"
+        curs.execute(sql)
+        rows = curs.fetchall()
         for e in rows:
-            temp = {'sabun':e[0],'e_name':e[1],'dept':e[2],'mobile':e[3]}
-            arr.append(temp)
+            temp = {'sabun':e[0],'name':e[1],'dept':e[2],'mobile':e[3]}
+            ret.append(temp)     
         
         conn.close()
-        return arr
+        return ret 
     
-    def selEmps(self,sabun):
-        list=[]
-        conn = MysqlConfig.conn
+    def insEmp(self,sabun,name,dept,mobile):
+        conn = pymysql.connect(host='localhost', user='root', password='python', db='python', charset='utf8')
+        curs = conn.cursor()
+        
+        sql = "INSERT INTO emp (sabun,name,dept,mobile) VALUES (%s,%s,%s,%s)"
+        cnt = curs.execute(sql, (sabun, name, dept, mobile))
+        conn.commit()
+        
+        conn.close()
+        return cnt
+    
+    def updEmp(self,sabun,name,dept,mobile):
+        conn = pymysql.connect(host='localhost', user='root', password='python', db='python', charset='utf8')
+        curs = conn.cursor()
+        
+        sql = "update emp set name=%s,dept=%s,mobile=%s where sabun=%s "
+        cnt = curs.execute(sql, (name, dept, mobile,sabun))
+        conn.commit()
+        
+        conn.close()
+        return cnt
+        
 
-        sql = f"SELECT sabun,e_name,dept,mobile FROM emp where sabun ={sabun}";
-        cur = conn.cursor()
-        cur.execute(sql)
-        list = cur.fetchall()
-        print(list)
-        conn.close()
-        return list
-    
-    def insEmps(self,sabun,e_name,dept,mobile):
-        conn = MysqlConfig.conn
-        cur = conn.cursor()
-        sql = f"insert into emp (sabun ,e_name ,dept, mobile) values ({sabun},{e_name},{dept},{mobile})"
-        cnt = cur.execute(sql)
-        conn.commit()
-        
-        conn.close()
-        return cnt
-    
-    def update(self,sabun,name,dept,mobile):
-        conn = MysqlConfig.conn
-        sql = f"update emp set name = '{name}',dept = '{dept}',mobile = '{mobile}' where sabun ='{sabun}'";
-        cur = conn.cursor()
-        cnt =cur.execute(sql)
-        conn.commit()
-        
-        conn.close()
-        return cnt
-    
+
     def delEmp(self,sabun):
-        conn = MysqlConfig.conn
-        cur = conn.cursor()
-        sql = f"delete from emp where sabun = {sabun}"
-        cnt =cur.execute(sql)
+        conn = pymysql.connect(host='localhost', user='root', password='python', db='python', charset='utf8')
+        curs = conn.cursor()
+        
+        sql = "delete from emp where sabun=%s  "
+        cnt = curs.execute(sql, (sabun))
         conn.commit()
         
         conn.close()
         return cnt
-    
+        
+
+
 if __name__ == '__main__':
-    sabun = '1'
-    list = MyEmpDao().selEmps(sabun)
-    print(list)
-    # cnt = MyEmpDao().insEmps('3', '3', '3', '3')
+    # list = MyEmpDao().getEmps()
+    # print(list)
+    # cnt = MyEmpDao().insEmp('3', '3', '3', '3')
     # print(cnt)
+    # cnt = MyEmpDao().updEmp('3', '4', '4', '4');
+    # print(cnt)
+    # cnt = MyEmpDao().delEmp('3')
+    # print(cnt)
+    pass
+
+

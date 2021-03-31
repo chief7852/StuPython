@@ -2,43 +2,109 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script> 
-<title>Insert title here</title>
+<title>회원관리</title>
+<script src="js/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+function fn_add(){
+	
+	var sabun	= $("#sabun").val();
+	var name	= $("#name").val();
+	var dept	= $("#dept").val();
+	var mobile	= $("#mobile").val();	
+	
+	var param = {
+		'sabun':sabun,
+		'name':name,
+		'dept':dept,
+		'mobile':mobile
+	}
+	$.ajax({
+		type: 'POST',
+		url: 'ins.ajax',
+		data: JSON.stringify(param),
+		dataType : 'JSON',
+		contentType: "application/json",
+		success: function(data){
+			if(data.result == "success"){
+				location.reload()
+			}
+		},
+		error: function(request, status, error){
+			console.log(error);
+		}
+	})
+}
+function fn_mod(){
+	alert("fn_mod");
+}
+function fn_del(){
+	alert("fn_del");
+}
+
+function fn_detail(sabun,name,dept,mobile){
+	$("#sabun").val(sabun);
+	$("#name").val(name);
+	$("#dept").val(dept);
+	$("#mobile").val(mobile);	
+}
+
+
+</script>
 </head>
 <body>
-<table border="1">
-	<th>사번</th>
-	<th>이름</th>
-	<th>부서</th>
-	<th>전화번호</th>
-{%for e in list%}
-<tr>
-	<td class="sabun">{{e.sabun}}</td> 
-	<td>{{e.e_name}}</td>
-	<td>{{e.dept}}</td>
-	<td>{{e.mobile}}</td>
-</tr>
+
+<table border="2px">
+	<tr>
+		<td>
+		
+<table border="2px">
+	<tr>
+		<td>사번</td>
+		<td>이름</td>
+		<td>부서</td>
+		<td>전화번호</td>
+		
+	</tr>
+{% for e in list %}
+	<tr>
+		<td>
+			<a href="javascript:fn_detail('{{e.sabun}}','{{e.name}}','{{e.dept}}','{{e.mobile}}')" >{{e.sabun}}</a>
+		</td>
+		<td>{{e.name}}</td>
+		<td>{{e.dept}}</td>
+		<td>{{e.mobile}}</td>
+	</tr>
 {% endfor %}
+
+</table>
+		
+		
+		</td>
+		<td>
+		
+<table border="2px">
+	<tr><td>사번</td>		<td><input type="text" id="sabun" /> </td></tr>
+	<tr><td>이름</td>		<td><input type="text" id="name" /> </td></tr>
+	<tr><td>부서</td>		<td><input type="text" id="dept" /> </td></tr>
+	<tr><td>전화번호</td>	<td><input type="text" id="mobile" /> </td></tr>
+	<tr>
+		<td colspan="2" >
+			<input type="button" onclick="fn_add()" value="추가" />
+			<input type="button" onclick="fn_mod()" value="수정" />
+			<input type="button" onclick="fn_del()" value="삭제" />
+		</td>
+	</tr>
+</table>
+		
+		
+		</td>
+	</tr>
 </table>
 
-<script type="text/javascript">
- $('.sabun').on('click', function(){
-	 var val = $(this).text()
-	 $.ajax({
-		 url : 'http://localhost:80/test',
-		 type : 'GET',
-		 data : {sabun:val},
-		 dataType : 'json',
-		 success : function(res){
-			 alert(res)
-		 },
-		 error: function(xtr,status,error){
-			  alert(xtr +":"+status+":"+error);
-		 }
 
-	 })
- })
-</script>
+
+
+
+
 </body>
-
 </html>

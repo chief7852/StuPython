@@ -1,14 +1,13 @@
-from day12 import MysqlConfig
-def selEmps(sabun):
-        arr=[]
-        conn = MysqlConfig.conn
+import speech_recognition as sr
 
-        sql = f"SELECT sabun,e_name,dept,mobile FROM emp where sabun ={sabun}";
-        cur = conn.cursor()
-        cur.execute(sql)
-        arr = cur.fetchall()
-        print(arr)
-        conn.close()
-sabun = '1';        
-selEmps(sabun)    
-    
+r =  sr.Recognizer()
+
+with sr.Microphone() as source:
+    print('Speak Anything : ')
+    audio = r.listen(source)
+
+    try:
+        text = r.recognize_google(audio)
+        print('You said : {}'.format(text))
+    except:
+        print('Sorry could not recognize yur voice')
